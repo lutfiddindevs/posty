@@ -12,6 +12,12 @@ class PostController extends Controller
         $posts = Post::latest()->with(['user', 'likes'])->paginate(20);
     	return view('posts.index', ['posts' => $posts]);
     }
+    
+    public function show(Post $post) {
+        return view('posts.show', [
+            'post' => $post
+        ]);
+    }
 
     public function store(Request $req) {
     	$this->validate($req, [
